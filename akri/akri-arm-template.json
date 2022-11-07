@@ -1,0 +1,98 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the DeisLabs Akri Configuration."
+            }
+        },
+        "customLocation": {
+            "type": "string",
+            "metadata": {
+                "description": "The host resource pool to deploy the DeisLabs Akri Configuration on.",
+                "group": "DeisLabs Akri Configuration Properties"
+            }
+        },
+        "discoveryHandlerName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the discovery handler that discovers the devices requested in this Configuration.",
+                "group": "DeisLabs Akri Configuration Properties"
+            }
+        },
+        "discoveryHandlerDetails": {
+            "type": "string",
+            "metadata": {
+                "description": "Any device filtering information that should be passed to Discovery Handlers.",
+                "group": "DeisLabs Akri Configuration Properties"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "DeisLabs.Akri/configurations",
+            "apiVersion": "2020-06-01-preview",
+            "name": "[parameters('name')]",
+            "location": "West US2",
+            "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "[parameters('customLocation')]"
+            },
+            "properties": {
+                "brokerSpec": {
+                    "brokerPodSpec": {
+                        "containers": [
+                            {
+                                "image": "nginx:stable-alpine",
+                                "name": "akri-debug-echo-broker",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "29m",
+                                        "memory": "30Mi",
+                                        "{{PLACEHOLDER}}": "1"
+                                    },
+                                    "requests": {
+                                        "cpu": "10m",
+                                        "memory": "10Mi",
+                                        "{{PLACEHOLDER}}": "1"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "brokerProperties": {},
+                "capacity": 2,
+                "configurationServiceSpec": {
+                    "ports": [
+                        {
+                            "name": "akri-debug-echo-foo-configuration-service",
+                            "port": 6052,
+                            "protocol": "TCP",
+                            "targetPort": 6052
+                        }
+                    ],
+                    "type": "ClusterIP"
+                },
+                "discoveryHandler": {
+                    "discoveryDetails": "[parameters('discoveryHandlerDetails')]",
+                    "name": "[parameters('discoveryHandlerName')]"
+                },
+                "instanceServiceSpec": {
+                    "ports": [
+                        {
+                            "name": "akri-debug-echo-foo-instance-service",
+                            "port": 6052,
+                            "protocol": "TCP",
+                            "targetPort": 6052
+                        }
+                    ],
+                    "type": "ClusterIP"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

@@ -1,0 +1,21 @@
+{
+    "mappings": [
+        {
+            "ApiVersion": "2020-01-01-preview",
+            "ResourceType": "<Azure Resource Type - e.g. towers>",
+            "ProviderName": "Microsoft.Akri",
+            "ResourceMapping":
+            {
+                "Version": "v0",
+                "Group": "akri.sh",
+                "Kind": "CustomResourceDefinition",
+                "Name": "configurations",
+                "IsAsync": false,
+                "Liquid": {
+                    "AzureToKubernetes": "",
+                    "KubernetesToAzure": ""
+                }
+            }
+        },
+    ]
+}

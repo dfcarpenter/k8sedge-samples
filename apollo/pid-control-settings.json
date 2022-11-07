@@ -1,0 +1,42 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/Azure/project-apollo/docs/usage/example/temperaturePIDControl.settings.schema.json",
+    "title": "Temperature PID Control",
+    "description": "A Apollo Runtime based python PID controller, to control the temperature",
+    "type": "object",
+    "properties": {
+      "Kp": {
+        "description": "The value for the proportional gain",
+        "type": "number"
+      },
+      "Ki": {
+        "description": "The value for the integral gain",
+        "type": "number"
+      },
+      "Kd": {
+        "description": "The value for the derivative gain",
+        "type": "number"
+      },
+      "setpoint": {
+        "description": "The initial set point that the PID will try to achieve",
+        "type": "number"
+      },
+      "sample_time": {
+        "description": "The time in seconds which the controller should wait before generating a new output value. The PID works best when it is constantly called (eg. during a loop), but with a sample time set so that the time",
+        "type": "number"
+      },
+      "auto_mode": {
+        "description": "Whether the controller should be enabled (auto mode) or not (manual mode)",
+        "type": "boolean"
+      },
+      "input_data_point": {
+        "description": "The data point that provides the input value for PID control loop",
+        "type": "string"
+      },
+      "output_data_point": {
+        "description": "The data point that will be changed by PID control loop",
+        "type": "string"
+      }
+    },
+    "required": [ "Kp", "Ki", "Kd", "setpoint", "input_data_point", "output_data_point" ]
+  }
