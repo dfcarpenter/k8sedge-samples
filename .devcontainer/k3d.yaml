@@ -13,15 +13,21 @@ volumes:
     nodeFilters:
       - server:0
 ports:
+  - port: 1883:1883
+    nodeFilters:
+      - server:0
+  - port: 8883:8883
+    nodeFilters:
+      - server:0
   - port: 30000:30000
     nodeFilters:
-      - server[0]
+      - server:0
   - port: 31080:31080
     nodeFilters:
-      - server[0]
+      - server:0
   - port: 32000:32000
     nodeFilters:
-      - server[0]
+      - server:0
 
 options:
   k3d:
