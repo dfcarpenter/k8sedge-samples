@@ -2,18 +2,32 @@ apiVersion: apps/v1
 kind: Deployment 
 metadata:
   name: opcplc-deployment
-  labels:
-    app: opcplc
 spec:
   selector: 
     matchLabels:
       app: opcplc 
   template:
+    metadata:
+      labels: 
+        app: opcplc
     spec:
       containers:
         - name: opcplc 
           image: mcr.microsoft.com/iotedge/opc-plc:latest
-          args: [""]
+          args:
+            - "--sph"
+            - "--sn=5"
+            - "--sr=10"
+            - "--st=uint"
+            - "--fn=5"
+            - "--fr=1"
+            - "--ft=uint"
+            - "--ctb"
+            - "--scn"
+            - "--lid"
+            - "--lsn"
+            - "--ref"
+            - "--gn=5"
           resources:
             limits:
               cpu: "1"
@@ -32,11 +46,13 @@ metadata:
   name: opcplc-service 
 spec: 
   selector:
-    app.kubernetes.io/name: opcplc
+    app: opcplc
   ports:
     - protocol: TCP 
+      name: opc 
       port: 50000
       targetPort: 50000
     - protocol: TCP
+      name: opcconfig
       port: 8080
       targetPort: 8080 
