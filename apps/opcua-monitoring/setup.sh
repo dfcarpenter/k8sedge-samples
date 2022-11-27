@@ -3,7 +3,10 @@
 
 echo "Setting up Azure resources"
 
-az account set --subscription MyAzureSub
+echo "Please specify a subscription"
+read SUBSCRIPTION 
+
+az account set --subscription $SUBSCRIPTION
 
 
 az eventhubs namespace create --name akriopc -g akriopc --enable-kafka true --enable-auto-inflate true --sku Standard 

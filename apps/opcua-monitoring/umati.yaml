@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: umati
+spec:
+  type: NodePort
+  ports:
+  - port: 4840
+    protocol: TCP
+    targetPort: 4840
+  selector:
+    run: umati
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: umati
+  name: umati
+spec:
+  containers:
+  - image: edgeappmodel.azurecr.io/apollo/verification/umati-plc:latest
+    name: umati
+    ports:
+    - containerPort: 4840
+    resources: {}
+  imagePullSecrets:
+  - name: edgeappmodel
+  - name: edgeappmodel-azurecr
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
