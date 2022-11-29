@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap 
+metadata: 
+  name: edge-policies 
+  namespace: default
+data:
+  values.yaml: |
+    e4kdmqtt:
+      authorizationPolicies:
+        configYaml: 
+          policy: custom
+          rules-type: basic 
+          rules: 
+            - principals:
+                usernames: 
+                  - client1
+                  - client2
+                  - umati1
+                  - umati2
+                attributes:
+                  location: "Redmond"
+                  organization: "manufacturing"
+                resources:
+                  - method: Connect 
+                  - method: Publish 
+                    topics:
+                      - "/umati-telemetry/"
+                      - "/umati-telemetry/{principal.username}"
+                      - "/umati-telemetry/{principal.attributes.organization}"
+                  - method: Subscribe
+                    topics: 
+                      - "/commands/{principal.attributes.organization}"
+                      - "/umati-telemetry/response/{principal.username}"
