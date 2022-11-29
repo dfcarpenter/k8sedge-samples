@@ -1,0 +1,20 @@
+# permissions for end users to view moduletypes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: moduletype-viewer-role
+rules:
+- apiGroups:
+  - application.apollo.microsoft.com
+  resources:
+  - moduletypes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - application.apollo.microsoft.com
+  resources:
+  - moduletypes/status
+  verbs:
+  - get

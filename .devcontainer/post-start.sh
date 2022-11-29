@@ -1,4 +1,5 @@
 
+export AKRI_HELM_CRICTL_CONFIGURATION="--set kubernetesDistro=k8s"
 
 echo "post-start start"
 echo "$(date +'%Y-%m-%d %H:%M:%S')    post-start start" >> "$HOME/status"

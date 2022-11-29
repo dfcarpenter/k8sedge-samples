@@ -1,0 +1,78 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: modules.application.apollo.microsoft.com
+spec:
+  group: application.apollo.microsoft.com
+  names:
+    kind: Module
+    listKind: ModuleList
+    plural: modules
+    singular: module
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: Module is the Schema for the modules API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ModuleSpec defines the desired state of a module instance
+            properties:
+              description:
+                description: An optional user-friendly description for the module.
+                type: string
+              name:
+                description: 'The user-friendly name of the Module, e.g.: Greenfield
+                  Connector'
+                minLength: 3
+                type: string
+              predecessors:
+                description: 'The identifiers of the predecessor modules that produce
+                  data for this module instance, e.g.: opc-connector.'
+                items:
+                  type: string
+                type: array
+              settings:
+                description: The settings of the module according to the defined schema.
+                type: string
+              type:
+                description: 'The identifier of the module type this module is an
+                  instance of, e.g.: greenfield-connector.'
+                type: string
+            required:
+            - name
+            - type
+            type: object
+          status:
+            description: ModuleStatus defines the observed state of Module
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

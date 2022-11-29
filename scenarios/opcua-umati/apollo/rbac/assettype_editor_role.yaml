@@ -1,0 +1,24 @@
+# permissions for end users to edit assettypes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: assettype-editor-role
+rules:
+- apiGroups:
+  - application.apollo.microsoft.com
+  resources:
+  - assettypes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - application.apollo.microsoft.com
+  resources:
+  - assettypes/status
+  verbs:
+  - get

@@ -1,5 +1,0 @@
-syntax = "proto3"
-
-package OpcuaNode;
-
-service OpcuaNode { rpc Get}
