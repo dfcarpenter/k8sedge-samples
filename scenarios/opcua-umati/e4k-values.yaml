@@ -4,11 +4,11 @@ e4kdmqtt:
       replicas: 2
     backend:
       replicas: 2 
-      chainCount: 1 
+      chainCount: 2
   
   authenticationMethods:
     - method: username-password 
-      password_database: e4k-clients
+      password_database: clients
 
 connector:
   enabled: true
@@ -29,7 +29,7 @@ e4kconnector:
       sasl:
         sasl_type: plain
         username: $ConnectionString
-        password: Endpoint=sb://akri-opc-ehnamespace.servicebus.windows.net/;SharedAccessKeyName=opcua;SharedAccessKey=pPL+4JY4CQBr0DSGUZdS8QOu8wE7NicpTjp6EF7Nk5M=;EntityPath=akri-opc-eventhub
+        password: Endpoint=sb://akri-opc-ehnamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=4qMdjcW8C01ZOuFl8wEcLSzz5WMGkNMIjhyv1KHt4M4=
   topicMap:
     configYaml:
       route:
@@ -47,11 +47,6 @@ e4kconnector:
         - kafka: e4k-d2c
           mqtt: /pull-176-merge-e4k-sample/data/opc-connector/opc-ua-connector/boiler-sample
           sink_to: kafka
-        - kafka: e4k-d2c
-          mqtt: /+/test
-          sink_to: kafka
-        - kafka: e4k-d2c
-          mqtt: /test/#
-          sink_to: kafka
+       
         
     

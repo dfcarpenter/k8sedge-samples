@@ -54,15 +54,6 @@ var eventHubNamespaceConnectionString = listKeys(eventHubNamespace_authorization
 
 
 
-resource streamingAnalyticsCluster 'Microsoft.StreamAnalytics/clusters@2020-03-01' = {
-  name: 'akri-opc-cluster'
-  location: location
-  sku: {
-    capacity: 36
-    name: 'Default'
-  }
-}
-
 resource streamingAnalyticsJob 'Microsoft.StreamAnalytics/streamingjobs@2021-10-01-preview' = {
   name: 'akri-opc-job'
   location: location 
@@ -71,9 +62,6 @@ resource streamingAnalyticsJob 'Microsoft.StreamAnalytics/streamingjobs@2021-10-
     name: 'Standard'
   }
   properties: {
-    cluster: {
-      id: streamingAnalyticsCluster.id
-    }
     compatibilityLevel: '1.1'
   }
 } 

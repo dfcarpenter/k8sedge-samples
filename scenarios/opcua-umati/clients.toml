@@ -1,0 +1,28 @@
+
+
+# Credential #1
+# username: umati1
+# password: umati 
+[umati1]
+password = "$pbkdf2-sha512$i=100000,l=64$aHdHT2poYWlublhNdGt0cA$ELH6Lz92qNICpXwkHuciKSpQPfYyyoJhOzR6sN6MIMCkx2DB6U/tGhr9udylcAOmNgoGX5Ft6SrXKvo7m7KP/Q"
+
+
+[umati1.attributes]
+site = "Redmond"
+organization = "manufacturing"
+
+
+[umati2]
+password = "$pbkdf2-sha512$i=100000,l=64$aHdHT2poYWlublhNdGt0cA$ELH6Lz92qNICpXwkHuciKSpQPfYyyoJhOzR6sN6MIMCkx2DB6U/tGhr9udylcAOmNgoGX5Ft6SrXKvo7m7KP/Q"
+
+
+[umati2.attributes]
+site = "Boulder"
+
+
+[client1]
+password = "$pbkdf2-sha512$i=100000,l=64$UGdwblJEbmhtVkVkQ1VHSA$BoTrjElYi/6Crhh9Xutai3Gwm75X0VX/EcjsRbz2jIXQ/ej10aFFOJk5BgRi5tQLcSjBgNTGca1+r4i0cMKRRw"
+
+
+[client2]
+password = "$pbkdf2-sha512$i=100000,l=64$WHFtRWtwWEpPZ1hwVEhFbg$xBm4ClmBoYI/vH4CR3amv1Uci/UghTmDBhaFh5NZC4TnyzwSuMs4tQIp0ZKsP29IALSKn7CnazUdb8z82e6XtA"
