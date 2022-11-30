@@ -1,0 +1,14 @@
+authenticationMethod: serviceAccountToken
+mqttBroker:
+  name: azedge-dmqtt-frontend
+  namespace: default
+  port: 1883
+internalBroker: false 
+supervisor:
+  image: edgeappmodel.azurecr.io/apollo/runtime/edge-application-supervisor
+  tag: latest
+  pullPolicy: Always
+moduleConnector:
+  image: edgeappmodel.azurecr.io/apollo/runtime/module-connector
+  tag: latest
+logLevel: Debug

@@ -1,0 +1,69 @@
+kubernetesDistro: k8s
+
+imagePullSecrets:
+- name: edgeappmodel
+- name: edgeappmodel-azurecr
+
+opcua:
+  discovery:
+    # enabled: true
+    enabled: false
+
+  configuration:
+    # enabled: true
+    enabled: false
+    discoveryDetails:
+      discoveryUrls:
+      - opc.tcp://umati.akri.svc.cluster.local:4840/
+      
+      
+
+# https://docs.akri.sh/development/handler-development
+custom:
+  configuration:
+    enabled: true
+    name: akri-opcua-asset
+    discoveryHandlerName: opcua-asset
+    discoveryDetails: |
+      opcuaDiscoveryMethod:
+        asset:
+          endpointUrl: "opc.tcp://umati.akri.svc.cluster.local:4840/"
+    brokerPod:
+      image:
+        repository: edgeappmodel.azurecr.io/opcua-discovery-broker
+        tag: latest
+        pullPolicy: Always
+      resources:
+        memoryRequest: 64Mi
+        cpuRequest: 10m
+        memoryLimit: 512Mi
+        cpuLimit: 100m
+
+  discovery:
+    enabled: true
+    name: akri-opcua-asset-discovery
+    image:
+      repository: edgeappmodel.azurecr.io/opcua-discovery-handler
+      tag: latest
+      pullPolicy: Always
+    useNetworkConnection: true
+    port: 80
+    resources:
+      memoryRequest: 64Mi
+      cpuRequest: 10m
+      memoryLimit: 512Mi
+      cpuLimit: 100m
+
+controller:
+  resources:
+    memoryRequest: 64Mi
+    cpuRequest: 10m
+    memoryLimit: 512Mi
+    cpuLimit: 100m
+
+agent:
+  resources:
+    memoryRequest: 64Mi
+    cpuRequest: 10m
+    memoryLimit: 512Mi
+    cpuLimit: 100m

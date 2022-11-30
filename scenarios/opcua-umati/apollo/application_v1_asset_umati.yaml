@@ -1,0 +1,17 @@
+apiVersion: application.apollo.microsoft.com/v1
+kind: Asset
+metadata:
+  namespace: sample-application
+  name: umati-sample
+spec:
+  name: umati sample asset
+  description: A sample umati asset
+  type: umati
+  sourceModule: opc-ua-connector
+  dataPoints:
+    - dataSource: ns=7;s=Numeric
+      schemaPath: dtmi:com:example:Thermostat;1:temperature
+      classification:
+        priority: low
+        importance: medium
+      # publishingInterval: P1S

@@ -5,9 +5,9 @@ metadata:
   namespace: umati 
 spec:
   name: UmatiRobot
+  
   labels: 
     - apollo 
     - umatidemo
     - robot 
   schema:
-  
