@@ -6,11 +6,11 @@ metadata:
 spec:
   name: umati sample asset
   description: A sample umati asset
-  type: umati
+  type: umatirobot
   sourceModule: opc-ua-connector
   dataPoints:
     - dataSource: ns=7;s=Numeric
-      schemaPath: dtmi:com:example:Thermostat;1:temperature
+      schemaPath: dtmi:UmatiRobot;1
       classification:
         priority: low
         importance: medium

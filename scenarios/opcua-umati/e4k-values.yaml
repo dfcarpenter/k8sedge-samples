@@ -47,11 +47,6 @@ e4kconnector:
         - kafka: e4k-d2c
           mqtt: /sample-application/data/opc-connector/opc-ua-connector/boiler-sample
           sink_to: kafka
-        - kafka: e4k-d2c
-          mqtt: /sample-application/data/opc-connector/opc-ua-connector/umati-sample
-          sink_to: kafka
-        - kafka: e4k-d2c
-          mqtt: /akri-opcua-asset-f59187/opc-connector/opc-ua-connector/umati-sample
        
         
     

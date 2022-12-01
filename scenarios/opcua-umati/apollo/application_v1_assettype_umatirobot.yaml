@@ -1,0 +1,100 @@
+apiVersion: application.apollo.microsoft.com/v1
+kind: AssetType
+metadata:
+  name: umatirobot
+  namespace: sample-application
+spec:
+  name: UmatiRobot
+  labels:
+    - apollo
+    - demo
+    - umatirobot
+  schema: '{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:UmatiRobot;1",
+    "@type": "Interface",
+    "contents": [
+        {
+            "@type": ["Property", "OpcNode"],
+            "name": "AssetId",
+            "schema": "string",
+            "NodeId" : "ns=7;i=6061"
+        },
+        {
+            "@type": ["Property", "OpcNode"],
+            "name": "Model",
+            "schema": "string",
+            "NodeId" : "ns=7;i=6063"
+        },
+        {
+            "@type": ["Property", "OpcNode"],
+            "name": "ProductCode",
+            "schema": "string",
+            "NodeId" : "ns=7;i=6004"
+        },
+        {
+            "@type": "Component",
+            "name": "Robot_PowerTrains_PowerTrain1_Motor1",
+            "schema": {
+                "@id": "dtmi:UmatiRobot:PowerTrains:Motor;1",
+                "@type": "Interface",
+                "contents": [
+                    {
+                        "@type": ["Telemetry", "OpcNode"],
+                        "name": "MotorTemperature",
+                        "description": "The motor temperature provides the temperature of the motor. If there is no temperature sensor the value is set to null.",
+                        "schema": "double",
+                        "NodeId" : "ns=7;i=6054"
+                    },
+                    {
+                        "@type": ["Property", "OpcNode"],
+                        "name": "Manufacturer",
+                        "schema": "string",
+                        "NodeId" : "ns=7;i=6052"
+                    },
+                    {
+                        "@type": ["Property", "OpcNode"],
+                        "name": "Model",
+                        "schema": "string",
+                        "NodeId" : "ns=7;i=6053"
+                    },
+                    {
+                        "@type": ["Property", "OpcNode"],
+                        "name": "ProductCode",
+                        "schema": "string",
+                        "NodeId" : "ns=7;i=6058"
+                    },
+                    {
+                        "@type": ["Property", "OpcNode"],
+                        "name": "SerialNumber",
+                        "schema": "string",
+                        "NodeId" : "ns=7;i=6059"
+                    }
+                ]
+            }
+        },
+        {
+            "@type": "Component",
+            "name" : "Robot_Axes_Axis1",
+            "schema": {
+                "@id": "dtmi:UmatiRobot:Axis;1",
+                "@type": "Interface",
+                "contents" : [
+                    {
+                        "@type": ["Telemetry", "OpcNode"],
+                        "name": "Mass",
+                        "description": "The weight of the load mounted on one mounting point.",
+                        "schema": "double",
+                        "NodeId" : "ns=7;i=6050"
+                    },
+                    {
+                        "@type": ["Telemetry", "OpcNode"],
+                        "name": "MotionProfile",
+                        "schema": "double",
+                        "NodeId" : "ns=7;i=6019"
+                    }
+                ]
+            }
+        }
+    ]
+}'
